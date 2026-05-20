@@ -1,0 +1,274 @@
+/* ========================================
+   Global
+======================================== */
+
+:root {
+  --md-primary-fg-color: #6366f1;
+  --md-accent-fg-color: #22d3ee;
+
+  --card-radius: 18px;
+}
+
+/* ========================================
+   Footer
+======================================== */
+
+/* 主 Footer */
+.md-footer {
+
+  background:
+    linear-gradient(
+      180deg,
+      #065f46,
+      #047857
+    );
+
+  border-top:
+    1px solid rgba(255,255,255,0.06);
+}
+
+/* 最底部 Footer */
+.md-footer-meta {
+
+  background:
+    rgba(4, 120, 87, 0.96);
+}
+
+/* Footer 文字 */
+.md-footer-meta__inner {
+
+  color:
+    rgba(255,255,255,0.72);
+}
+
+/* Footer 链接 */
+.md-footer a {
+
+  color:
+    #d1fae5;
+}
+
+/* hover */
+.md-footer a:hover {
+
+  color:
+    white;
+}
+
+/* 页面宽度 */
+.md-grid {
+  max-width: 1440px;
+}
+
+/* 字体优化 */
+body {
+  font-feature-settings: "kern";
+  text-rendering: optimizeLegibility;
+}
+
+/* ========================================
+   Header
+======================================== */
+
+.md-header {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 124, 84, 0.92),
+      rgba(12, 159, 105, 0.88)
+    );
+    
+  backdrop-filter: blur(16px);
+  border: none;
+}
+
+/* 顶栏标题 */
+.md-header__title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* ========================================
+   Sidebar
+======================================== */
+
+.md-sidebar {
+  padding-top: 0.5rem;
+}
+
+.md-tabs {
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 159, 105, 0.88),
+      rgba(24, 147, 102, 0.88)
+    );
+
+  backdrop-filter: blur(14px);
+
+  border: none;
+
+  box-shadow:
+    0 4px 24px rgba(11, 152, 105, 0.18);
+}
+/* 左侧导航 */
+.md-nav__title {
+  font-weight: 700;
+}
+
+/* 导航 hover */
+.md-nav__link:hover {
+  color: #67e8f9;
+  transition: 0.2s;
+}
+
+/* ========================================
+   Content
+======================================== */
+
+/* 主内容区域 */
+.md-content__inner {
+  margin-bottom: 4rem;
+}
+
+/* 一级标题 */
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* 二级标题 */
+h2 {
+  margin-top: 3rem;
+  font-weight: 700;
+}
+
+/* ========================================
+   Code Block
+======================================== */
+
+.highlight pre {
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.25);
+}
+
+/* 行内代码 */
+code {
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+}
+
+/* 代码复制按钮 */
+.md-clipboard {
+  color: #94a3b8;
+}
+
+/* ========================================
+   Tables
+======================================== */
+
+.md-typeset table:not([class]) {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ========================================
+   Cards / Admonitions
+======================================== */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: var(--card-radius);
+  border: none;
+  box-shadow:
+    0 6px 30px rgba(0,0,0,0.18);
+}
+
+/* ========================================
+   Buttons
+======================================== */
+
+.md-typeset .md-button {
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .md-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Links
+======================================== */
+
+.md-typeset a {
+  transition: 0.2s;
+}
+
+.md-typeset a:hover {
+  opacity: 0.8;
+}
+
+/* ========================================
+   Dark Mode
+======================================== */
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0f172a;
+}
+
+/* 深色模式卡片 */
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+  background: rgba(255,255,255,0.03);
+}
+
+/* 深色模式代码块 */
+[data-md-color-scheme="slate"] .highlight pre {
+  background: #111827;
+}
+
+/* ========================================
+   Smooth Animation
+======================================== */
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* ========================================
+   Hero Title Style
+======================================== */
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.75;
+  max-width: 720px;
+}
+
+/* ========================================
+   Glassmorphism Card
+======================================== */
+
+.glass-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 24px;
+
+  padding: 2rem;
+}
