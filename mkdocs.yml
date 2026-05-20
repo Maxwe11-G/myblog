@@ -1,7 +1,10 @@
 site_name: My Blog
 
+site_url: https://maxwe11-g.github.io/myblog/
+
 theme:
   name: material
+  custom_dir: overrides
 
   palette:
 
@@ -18,25 +21,14 @@ theme:
         name: Light mode
       primary: black
       accent: cyan
-  
+
   features:
-  - navigation.tabs
-  - navigation.sections
-  - navigation.top
-  - search.highlight
-  - content.code.copy
-  - content.code.annotate
-
-markdown_extensions:
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.arithmatex
-
-extra_javascript:
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-extra_css:
-  - stylesheets/extra.css
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
 
 nav:
   - Home: index.md
@@ -44,10 +36,6 @@ nav:
   - Posts:
       - First Post: posts/first-post.md
       - Second Post: posts/second-post.md
-
-markdown_extensions:
-  - pymdownx.arithmatex:
-      generic: true
 
 markdown_extensions:
   - admonition
@@ -58,8 +46,10 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-site_url: https://maxwe11-g.github.io/myblog/
+  - javascripts/extra.js
