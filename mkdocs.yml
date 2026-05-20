@@ -1,0 +1,63 @@
+site_name: My Blog
+
+theme:
+  name: material
+
+  palette:
+
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+      primary: indigo
+      accent: cyan
+
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+      primary: black
+      accent: cyan
+  
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.top
+  - search.highlight
+  - content.code.copy
+  - content.code.annotate
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.arithmatex
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Posts:
+      - First Post: posts/first-post.md
+      - Second Post: posts/second-post.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
