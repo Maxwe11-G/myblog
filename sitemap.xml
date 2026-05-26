@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://maxwe11-g.github.io/myblog/</loc>
-         <lastmod>2026-05-20</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://maxwe11-g.github.io/myblog/about/</loc>
-         <lastmod>2026-05-20</lastmod>
-    </url>
-    <url>
-         <loc>https://maxwe11-g.github.io/myblog/posts/first-post/</loc>
-         <lastmod>2026-05-20</lastmod>
+         <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://maxwe11-g.github.io/myblog/posts/second-post/</loc>
-         <lastmod>2026-05-20</lastmod>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://maxwe11-g.github.io/myblog/posts/computer-organization/chapter5/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://maxwe11-g.github.io/myblog/posts/computer-organization/chapter6/</loc>
+         <lastmod>2026-05-26</lastmod>
     </url>
 </urlset>

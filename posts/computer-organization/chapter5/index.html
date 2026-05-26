@@ -1,0 +1,1465 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://maxwe11-g.github.io/myblog/posts/computer-organization/chapter5/">
+      
+      
+        <link rel="prev" href="../../../about/">
+      
+      
+        <link rel="next" href="../chapter6/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>chapter5 - Maxwe11's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-5cache" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Maxwe11&#39;s Blog" class="md-header__button md-logo" aria-label="Maxwe11's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Maxwe11's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              chapter5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a
+  href="https://github.com/Maxwe11-G/myblog"
+  title="Go to repository"
+  class="md-source"
+  data-github-repo="Maxwe11-G/myblog"
+>
+  <div class="md-source__icon md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Maxwe11-G/myblog
+  </div>
+  <div class="md-source__stars" aria-label="GitHub stars">
+    <span class="md-source__star-icon md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg>
+    </span>
+    <span data-github-stars>...</span>
+  </div>
+  <div class="md-source__forks" aria-label="GitHub forks">
+    <span class="md-source__fork-icon md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a3 3 0 0 1 3 3c0 1.28-.81 2.38-1.94 2.81.09.46.33 1.02.94 1.82 1 1.29 3 3.2 4 4.54 1-1.34 3-3.25 4-4.54.61-.8.85-1.36.94-1.82A3.015 3.015 0 0 1 15 5a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.32-.86 2.45-2.05 2.85-.08.52-.31 1.15-.95 1.98-1 1.34-3 3.25-4 4.55-.61.79-.85 1.35-.94 1.81C14.19 16.62 15 17.72 15 19a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.28.81-2.38 1.94-2.81-.09-.46-.33-1.02-.94-1.81-1-1.3-3-3.21-4-4.55-.64-.83-.87-1.46-.95-1.98A3.015 3.015 0 0 1 3 5a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m12 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m-6 14a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg>
+    </span>
+    <span data-github-forks>...</span>
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  文章
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Maxwe11&#39;s Blog" class="md-nav__button md-logo" aria-label="Maxwe11's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Maxwe11's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a
+  href="https://github.com/Maxwe11-G/myblog"
+  title="Go to repository"
+  class="md-source"
+  data-github-repo="Maxwe11-G/myblog"
+>
+  <div class="md-source__icon md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Maxwe11-G/myblog
+  </div>
+  <div class="md-source__stars" aria-label="GitHub stars">
+    <span class="md-source__star-icon md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg>
+    </span>
+    <span data-github-stars>...</span>
+  </div>
+  <div class="md-source__forks" aria-label="GitHub forks">
+    <span class="md-source__fork-icon md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a3 3 0 0 1 3 3c0 1.28-.81 2.38-1.94 2.81.09.46.33 1.02.94 1.82 1 1.29 3 3.2 4 4.54 1-1.34 3-3.25 4-4.54.61-.8.85-1.36.94-1.82A3.015 3.015 0 0 1 15 5a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.32-.86 2.45-2.05 2.85-.08.52-.31 1.15-.95 1.98-1 1.34-3 3.25-4 4.55-.61.79-.85 1.35-.94 1.81C14.19 16.62 15 17.72 15 19a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.28.81-2.38 1.94-2.81-.09-.46-.33-1.02-.94-1.81-1-1.3-3-3.21-4-4.55-.64-.83-.87-1.46-.95-1.98A3.015 3.015 0 0 1 3 5a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m12 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m-6 14a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg>
+    </span>
+    <span data-github-forks>...</span>
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文章
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    文章
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    chapter5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    chapter5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储器的基本类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储器的基本类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DRAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flash 与磁盘
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储器层次结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hitmiss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hit、Miss 与平均访问时间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache 的作用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直接映射 Cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Offset 与字节寻址
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虚拟内存
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-page-fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page 与 Page Fault
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        页表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么页表会很大
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-replacement-dirty-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Replacement 与 Dirty Bit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    chapter6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../second-post/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他文章
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储器的基本类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储器的基本类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DRAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flash 与磁盘
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储器层次结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hitmiss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hit、Miss 与平均访问时间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache 的作用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直接映射 Cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block Offset 与字节寻址
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虚拟内存
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-page-fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page 与 Page Fault
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        页表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么页表会很大
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-replacement-dirty-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Replacement 与 Dirty Bit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-5cache">计算机组成原理 Chapter 5：存储层次、Cache 与虚拟内存</h1>
+<p>这一章的主线是 <strong>memory hierarchy</strong>：CPU 很快，主存和磁盘相对慢得多，所以计算机系统需要用分层结构把“快但贵的小容量存储”和“慢但便宜的大容量存储”组合起来。</p>
+<p>可以把本章分成三层理解：</p>
+<ul>
+<li>存储器层次：为什么要用 SRAM、DRAM、Flash、磁盘分层。</li>
+<li>Cache：怎样利用局部性让处理器多数时候访问更快的存储。</li>
+<li>虚拟内存：怎样让主存像磁盘的 Cache，并为程序提供独立的地址空间。</li>
+</ul>
+<h2 id="_1">存储器的基本类型</h2>
+<p>随着处理器速度快速提升，内存访问速度没有以同样速度增长，CPU 经常需要等待数据。存储系统的设计目标就是在成本可接受的前提下，尽量降低平均访问时间。</p>
+<p>常见存储器可以按速度、价格和容量大致分层：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>是否易失</th>
+<th>典型用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM</td>
+<td>易失</td>
+<td>CPU 内部 Cache</td>
+<td>很快、价格高、容量小</td>
+</tr>
+<tr>
+<td>DRAM</td>
+<td>易失</td>
+<td>主存 RAM</td>
+<td>容量较大、需要刷新、速度低于 SRAM</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>非易失</td>
+<td>SSD、U 盘</td>
+<td>断电保存、读写速度介于 DRAM 和磁盘之间</td>
+</tr>
+<tr>
+<td>Magnetic Disk</td>
+<td>非易失</td>
+<td>机械硬盘</td>
+<td>容量大、价格低、机械访问延迟高</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dram">DRAM</h3>
+<p><code>DRAM</code> 是动态随机存取存储器。它用电容中的电荷表示数据，但电荷会逐渐泄漏，所以必须周期性刷新。刷新会带来额外开销，因此 DRAM 比 SRAM 慢。</p>
+<p>DRAM 的读取通常是破坏性的，读出后需要把数据重新写回。一般说的“内存条”主要就是 DRAM。现代 DRAM 引入时钟信号和流水化组织，因此也常见 <code>SDRAM</code> 这类名称。</p>
+<h3 id="sram">SRAM</h3>
+<p><code>SRAM</code> 是静态随机存取存储器。它用多个晶体管构成锁存结构，只要持续供电，数据就能保持，不需要像 DRAM 那样刷新。</p>
+<p>SRAM 的速度快，但面积和成本高，所以通常集成在 CPU 内部作为 L1、L2、L3 Cache。</p>
+<h3 id="flash">Flash 与磁盘</h3>
+<p><code>Flash</code> 是非易失性存储，断电后数据仍然保留，常用于 SSD 和 U 盘。</p>
+<p>机械磁盘由盘片、磁道、扇区和磁头组成：</p>
+<ul>
+<li><code>track</code>：磁道，盘片表面的同心圆。</li>
+<li><code>sector</code>：扇区，磁道上的一段，是磁盘常见的最小物理读写单元。</li>
+<li><code>cylinder</code>：柱面，多张盘片上半径相同的磁道集合。</li>
+</ul>
+<p>磁盘访问时间通常由以下部分组成：</p>
+<div class="arithmatex">\[
+Disk\ Access\ Time = Seek\ Time + Rotational\ Latency + Transfer\ Time + Controller\ Overhead
+\]</div>
+<p>例如：512B sector、15000rpm、平均寻道 4ms、传输率 100MB/s、控制器开销 0.2ms。</p>
+<p>平均旋转延迟约为半圈：</p>
+<div class="arithmatex">\[
+\frac{0.5}{15000 / 60} = 0.002s = 2ms
+\]</div>
+<p>传输 512B 的时间非常小，约为：</p>
+<div class="arithmatex">\[
+\frac{512B}{100MB/s} \approx 0.005ms
+\]</div>
+<p>所以总时间大约为：</p>
+<div class="arithmatex">\[
+4ms + 2ms + 0.2ms + 0.005ms \approx 6.2ms
+\]</div>
+<p>这说明机械磁盘的主要开销来自寻道和旋转延迟，而不是实际传输那几百字节的时间。</p>
+<h2 id="_2">存储器层次结构</h2>
+<p>越靠近 CPU 的存储器速度越快、容量越小、价格越高；越远离 CPU 的存储器容量越大、价格越低、速度越慢。</p>
+<p>典型层次如下：</p>
+<ol>
+<li>Registers</li>
+<li>L1 Cache</li>
+<li>L2/L3 Cache</li>
+<li>Main Memory</li>
+<li>SSD / Disk</li>
+</ol>
+<p>存储层次结构依赖 <strong>局部性原理</strong>：</p>
+<ul>
+<li>时间局部性：刚被访问的数据，短时间内很可能再次被访问。</li>
+<li>空间局部性：某个地址附近的数据，很可能很快也会被访问。</li>
+</ul>
+<p>在任意相邻两层之间，数据以固定大小的单位复制。这个单位通常叫 <code>block</code> 或 <code>line</code>。一个 block 往往包含多个 word，所以找到 block 后，还需要用 <code>offset</code> 指出具体访问 block 内的哪一个字节或字。</p>
+<h2 id="hitmiss">Hit、Miss 与平均访问时间</h2>
+<p>如果处理器需要的数据已经在高层存储中，称为 <code>hit</code>。如果高层没有找到，需要去低层取回，称为 <code>miss</code>。</p>
+<p>常见概念：</p>
+<ul>
+<li><code>hit time</code>：命中时访问高层存储所需的时间，也包括判断是否命中的时间。</li>
+<li><code>miss penalty</code>：缺失后，从低层取回 block、填入高层并把数据交给处理器的时间。</li>
+<li><code>miss rate</code>：访问中发生 miss 的比例。</li>
+</ul>
+<p>平均访问时间可以写成：</p>
+<div class="arithmatex">\[
+AMAT = Hit\ Time + Miss\ Rate \times Miss\ Penalty
+\]</div>
+<p>这也是 Cache 设计中非常重要的公式。即使命中时间很小，如果缺失率或缺失代价很大，整体性能仍然会很差。</p>
+<h2 id="cache">Cache 的作用</h2>
+<p>Cache 位于 CPU 和主存之间，用较小但更快的 SRAM 保存近期可能会被访问的数据。它的目标不是保存所有数据，而是利用局部性让“大多数访问都命中”。</p>
+<p>引入 Cache 后，核心问题变成：</p>
+<ol>
+<li>一个内存块应该放在 Cache 的哪里？</li>
+<li>CPU 访问某个地址时，怎样判断它是否在 Cache 中？</li>
+<li>如果 Cache 满了，应该替换哪个块？</li>
+<li>写操作应该什么时候同步到低层存储？</li>
+</ol>
+<h2 id="cache_1">直接映射 Cache</h2>
+<p><code>Direct Mapped Cache</code> 是最简单的一种组织方式：每个内存块只能放到 Cache 中唯一的一行。</p>
+<p>映射关系为：</p>
+<div class="arithmatex">\[
+Index = Block\ Address \bmod Number\ of\ Cache\ Blocks
+\]</div>
+<p>如果 Cache 行数是 2 的幂，取模就等价于取地址中的若干低位作为 <code>index</code>。</p>
+<p>一个地址通常被拆成三部分：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tag</td>
+<td>区分映射到同一行的不同内存块</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>指出访问 Cache 的哪一行</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>指出在 block 内访问哪一个字节或字</td>
+</tr>
+</tbody>
+</table>
+<p>Cache 行中还需要保存 <code>valid bit</code>：</p>
+<ul>
+<li><code>valid = 0</code>：这一行还没有有效数据。</li>
+<li><code>valid = 1</code>：这一行保存着可用数据，需要继续比较 tag。</li>
+</ul>
+<p>直接映射 Cache 的访问流程可以写成：</p>
+<ol>
+<li>用 <code>index</code> 找到唯一的 Cache 行。</li>
+<li>检查 valid bit 是否为 1。</li>
+<li>比较保存的 tag 和地址中的 tag。</li>
+<li>如果 valid 为 1 且 tag 匹配，则 hit。</li>
+<li>否则 miss，需要从低层存储取回对应 block。</li>
+</ol>
+<p>直接映射的优点是硬件简单、访问快；缺点是冲突 miss 明显。两个不同内存块如果 index 相同，就会反复互相替换。</p>
+<h2 id="block-offset">Block Offset 与字节寻址</h2>
+<p>如果一个 block 中包含多个 word，那么 offset 需要指出 block 内部具体位置。</p>
+<p>以 64 位系统为例，如果一个 word 是 4B，那么从 word offset 转成 byte offset 还需要 2 位，因为：</p>
+<div class="arithmatex">\[
+4B = 2^2B
+\]</div>
+<p>如果 block 中有 <span class="arithmatex">\(2^m\)</span> 个 word，那么选择 word 需要 <span class="arithmatex">\(m\)</span> 位；再选择 word 内的字节需要 2 位，所以 byte offset 共有：</p>
+<div class="arithmatex">\[
+m + 2
+\]</div>
+<p>这也是很多 Cache 地址拆分题容易出错的地方：题目到底是在说 word offset，还是 byte offset。</p>
+<h2 id="_3">虚拟内存</h2>
+<p>继续沿着层次结构思考：既然 Cache 可以把主存当作低层存储，那么主存也可以作为磁盘的 Cache。</p>
+<p>这就是虚拟内存的基本思想：</p>
+<blockquote>
+<p>Main memory can act as a cache for secondary storage.</p>
+</blockquote>
+<p>程序看到的是 <code>Virtual Address</code>，也就是虚拟地址。虚拟地址不是数据在真实内存条上的位置。操作系统和硬件会把虚拟地址转换成 <code>Physical Address</code>，再访问主存。</p>
+<p>虚拟内存带来的好处包括：</p>
+<ul>
+<li>让每个程序看起来拥有连续、独立的地址空间。</li>
+<li>保护不同进程的内存互不干扰。</li>
+<li>允许程序使用比物理内存更大的地址空间。</li>
+<li>让不常用的页暂时放在磁盘中。</li>
+</ul>
+<h2 id="page-page-fault">Page 与 Page Fault</h2>
+<p>在虚拟内存中，block 通常称为 <code>page</code>。虚拟地址被拆成两部分：</p>
+<ul>
+<li><code>Virtual Page Number</code>，虚拟页号。</li>
+<li><code>Page Offset</code>，页内偏移。</li>
+</ul>
+<p>页内偏移的位数决定页大小。例如页内偏移是 12 位，则页大小为：</p>
+<div class="arithmatex">\[
+2^{12}B = 4096B = 4KiB
+\]</div>
+<p>如果访问的虚拟页不在物理内存中，就会发生 <code>page fault</code>。Page fault 类似 Cache miss，但代价大得多，因为可能需要访问磁盘。</p>
+<p>一次 Page Fault 的典型处理过程：</p>
+<ol>
+<li>CPU 发现页表项无效，触发异常。</li>
+<li>操作系统接管控制权。</li>
+<li>操作系统在磁盘或交换区中找到需要的页。</li>
+<li>如果物理内存已满，选择一个页换出。</li>
+<li>如果被换出的页是 dirty 的，需要写回磁盘。</li>
+<li>把目标页读入物理内存。</li>
+<li>更新页表和相关状态位。</li>
+<li>重新执行刚才失败的指令。</li>
+</ol>
+<p>因为一次缺页可能花费数百万个时钟周期，所以虚拟内存设计通常采用：</p>
+<ul>
+<li>较大的 page，常见为 4KiB 或更大。</li>
+<li>更灵活的放置策略，通常接近全相联。</li>
+<li>软件处理缺页，因为磁盘开销远大于软件处理开销。</li>
+<li>写回策略，用 dirty bit 避免每次写都同步磁盘。</li>
+</ul>
+<h2 id="_4">页表</h2>
+<p>页表是虚拟页号到物理页号的映射表。每个进程通常有自己的页表，CPU 中会有页表寄存器指向当前进程页表的起始位置。</p>
+<p>地址翻译流程如下：</p>
+<ol>
+<li>CPU 产生虚拟地址。</li>
+<li>用虚拟页号 <code>VPN</code> 查询页表。</li>
+<li>检查页表项中的 valid bit。</li>
+<li>如果 valid 为 1，取出物理页号 <code>PPN</code>。</li>
+<li>将 <code>PPN</code> 与原来的 page offset 拼接成物理地址。</li>
+<li>如果 valid 为 0，触发 page fault。</li>
+</ol>
+<p>例如，48 位虚拟地址、4KiB 页大小时：</p>
+<ul>
+<li>Page offset 为 12 位。</li>
+<li>VPN 为 36 位。</li>
+</ul>
+<p>如果物理地址是 40 位，则：</p>
+<ul>
+<li>Page offset 仍为 12 位。</li>
+<li>PPN 为 28 位。</li>
+</ul>
+<p>翻译时 offset 不变，只替换页号部分。</p>
+<h2 id="_5">为什么页表会很大</h2>
+<p>如果虚拟地址是 48 位，页大小是 4KiB，则 VPN 有 36 位，也就是说理论上页表可能有：</p>
+<div class="arithmatex">\[
+2^{36}
+\]</div>
+<p>个条目。</p>
+<p>如果每个页表项占 8B，仅一张线性页表就可能需要：</p>
+<div class="arithmatex">\[
+2^{36} \times 8B = 512GiB
+\]</div>
+<p>这显然不可接受。因此实际系统会使用多级页表，只为真正使用到的虚拟地址范围分配页表页。</p>
+<h2 id="page-replacement-dirty-bit">Page Replacement 与 Dirty Bit</h2>
+<p>当发生 page fault 而物理内存没有空闲页时，操作系统必须选择一个页换出。理想目标是换出未来最久不会被访问的页，但未来无法准确知道，所以常用过去行为进行近似。</p>
+<p><code>LRU</code>，也就是最近最少使用策略，基于一个假设：很久没被访问的页，短期内再次访问的概率较低。</p>
+<p>写回策略中，每个页通常有 dirty bit：</p>
+<ul>
+<li><code>dirty = 0</code>：页没有被修改，换出时可以直接丢弃。</li>
+<li><code>dirty = 1</code>：页被修改过，换出前必须写回磁盘。</li>
+</ul>
+<p>这样可以减少不必要的磁盘写入。</p>
+<h2 id="tlb">TLB</h2>
+<p><code>TLB</code> 全称是 <code>Translation Lookaside Buffer</code>，可以理解为页表查询的 Cache，用来加速虚拟地址到物理地址的转换。</p>
+<p>如果每次访存都要先访问内存中的页表，再访问真正的数据，那么一次内存访问会变成至少两次内存访问。TLB 保存最近使用过的 VPN 到 PPN 的映射，可以显著降低地址翻译开销。</p>
+<p>TLB 访问流程：</p>
+<div class="highlight"><pre><span></span><code>VA = VPN + offset
+
+查 TLB
+  Hit:
+    PPN + offset -&gt; PA
+  Miss:
+    查页表
+      页有效:
+        更新 TLB
+        PPN + offset -&gt; PA
+      页无效:
+        Page Fault
+        从 Disk 调页
+        更新页表和 TLB
+        重新访问
+</code></pre></div>
+<h2 id="_6">小结</h2>
+<p>Chapter 5 可以抓住这几个关键词：</p>
+<ul>
+<li>存储器层次结构用小而快的上层存储弥补大而慢的下层存储。</li>
+<li>Cache 依赖时间局部性和空间局部性。</li>
+<li>直接映射 Cache 用 index 决定唯一位置，用 tag 判断是否匹配。</li>
+<li>虚拟内存让主存成为磁盘的 Cache，同时提供隔离和保护。</li>
+<li>Page fault 代价很高，所以页较大、替换策略更复杂、常由软件处理。</li>
+<li>TLB 是页表查询的 Cache，用来加速地址翻译。</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<h2 id="__comments">评论</h2>
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="Maxwe11-G/myblog"
+  data-repo-id="R_kgDOSiq2nA"
+  data-category="General"
+  data-category-id="DIC_kwDOSiq2nM4C9cJi"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async>
+</script>
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
